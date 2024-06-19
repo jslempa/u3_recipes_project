@@ -2,6 +2,8 @@ import { useNavigate } from 'react-router-dom'
 
 const MainIngredientsList = (props) => {
 
+  console.log(props.recipes)
+
   let navigate = useNavigate()
 
   // Navigate and Link are very similar in that they bring us to another part of our SPA (single page application)
@@ -14,19 +16,20 @@ const MainIngredientsList = (props) => {
   
 // this just turns every Boat item into a Link basically
 // but if we wanted, we could add a lot more power to it
-  const showBoat = (boat) => {
+  const showRecipe = (recipe) => {
    
-    navigate(`${boat.id}`)
+    navigate(`${recipe.idMeal}`)
 
   }
 
   return (
-    <div className="boat-grid">
+    <div className="recipe-grid">
+      <h1>Recipes</h1>
       {
-      props.boats.map((boat) => (
-        <div className="boat-card" onClick={() => showBoat(boat)} key={boat.id}>
-          <img style={{ display: 'block' }} src={boat.img} alt={boat.name} />
-          <h3>{boat.name}</h3>
+      props.recipes.map((recipe) => (
+        <div className="recipe-card" onClick={() => showRecipe(recipe)} key={recipe.idMeal}>
+          <h3>{recipe.strMeal}</h3>
+          <img style={{ display: 'block' }} src={recipe.strMealThumb} alt={recipe.strMeal}/>          
         </div>
       ))}
     </div>

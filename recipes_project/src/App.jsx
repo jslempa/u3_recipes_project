@@ -23,7 +23,7 @@ function App() {
     getRecipes()
   }, []) 
   // if we don't have this empty array then we get an infinite loop
-
+  // why??
   
     
   
@@ -57,10 +57,10 @@ function App() {
     <div className='App'>
         {/* <header>
           <SearchBar/>
-        </header>
+        </header> */}
         <main>
-          <MainIngredientsList/>
-        </main> */}
+          <MainIngredientsList recipes={recipes}/>
+        </main>
     </div>
   )
 }

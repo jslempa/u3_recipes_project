@@ -17,7 +17,7 @@ function App() {
 
   useEffect(() => {
     const getRecipes = async () => {
-      const res = await axios.get(`${BASE_URL}chicken`)
+      const res = await axios.get(`${BASE_URL}potato`)
       setRecipes(res.data.meals)            
     }
     getRecipes()
@@ -59,7 +59,11 @@ function App() {
           <SearchBar/>
         </header> */}
         <main>
-          <MainIngredientsList recipes={recipes}/>
+        
+          <Routes>
+            <Route path='/' element={<MainIngredientsList recipes={recipes}/>}/>
+            <Route path='/:idMeal' element={<RecipeDetails recipes={recipes}/>}/>
+          </Routes>
         </main>
     </div>
   )

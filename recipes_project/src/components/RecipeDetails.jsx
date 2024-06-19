@@ -3,35 +3,42 @@ import { useParams } from 'react-router-dom'
 
 const RecipeDetails = (props) => {
 
-  const [boat, setBoat] = useState('')
+  //console.log(props)
+
+  const [recipe, setRecipe] = useState([])
 
   // this pulls the id from our url and allows us to find an object with it
   let { id } = useParams()
 
+  console.log(useParams())
+
   useEffect(() => {
 
-    let selectedBoat = props.boats.find((boat) => boat.id === parseInt(id))
-    setBoat(selectedBoat)
+    let selectedRecipe = props.recipes.find((recipe) => parseInt(recipe.idMeal) === parseInt(id))
+    setRecipe(selectedRecipe)
     
-  }, [props.boats, id])
+  }, [props.recipes, id])
 
-  return boat ? (
+  return recipe ? (
     <div className="detail">
-      <div className="detail-header">
-        <img src={boat.img} alt={boat.name} />
-        <div style={{minWidth: '30em', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-          <h1>{boat.name}</h1>
-        </div> 
-      </div>
-      <div className="info-wrapper">
-        <div style={{display: 'flex', justifyContent: 'space-between'}}>
-          <h3>Price: ${boat.price}</h3>
-          <h3>Boat ID: {boat.id}</h3>
-        </div>
-        <p>{boat.description}</p>
-      </div>
+      <h1>{recipe.strMeal}</h1>
     </div>
-  ) : null;
+    // <div className="detail">
+    //   <div className="detail-header">
+    //     <img src={boat.img} alt={boat.name} />
+    //     <div style={{minWidth: '30em', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+    //       <h1>{boat.name}</h1>
+    //     </div> 
+    //   </div>
+    //   <div className="info-wrapper">
+    //     <div style={{display: 'flex', justifyContent: 'space-between'}}>
+    //       <h3>Price: ${boat.price}</h3>
+    //       <h3>Boat ID: {boat.id}</h3>
+    //     </div>
+    //     <p>{boat.description}</p>
+    //   </div>
+    // </div>
+  ) : <h2>Something is not working</h2>
 }
 
 export default RecipeDetails

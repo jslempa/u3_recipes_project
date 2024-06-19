@@ -8,13 +8,21 @@ const RecipeDetails = (props) => {
   const [recipe, setRecipe] = useState([])
 
   // this pulls the id from our url and allows us to find an object with it
-  let { id } = useParams()
+  let id = useParams()
 
-  console.log(useParams())
+  //console.log(useParams())
 
   useEffect(() => {
 
-    let selectedRecipe = props.recipes.find((recipe) => parseInt(recipe.idMeal) === parseInt(id))
+    let selectedRecipe = props.recipes.find((recipe) => recipe.idMeal === id.idMeal)
+      
+      
+      
+      //console.log(id.idMeal)
+      //parseInt(recipe.idMeal) === parseInt({id})
+
+  
+    
     setRecipe(selectedRecipe)
     
   }, [props.recipes, id])
@@ -22,6 +30,7 @@ const RecipeDetails = (props) => {
   return recipe ? (
     <div className="detail">
       <h1>{recipe.strMeal}</h1>
+      <h5>{recipe.strInstructions}</h5>
     </div>
     // <div className="detail">
     //   <div className="detail-header">

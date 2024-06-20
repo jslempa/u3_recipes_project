@@ -47,28 +47,26 @@ const RecipeDetails = (props) => {
 
     if (selectedRecipe) {
       setRecipe(selectedRecipe)
-      //console.log(selectedRecipe)
-      recipeToArray(selectedRecipe)
-      // console.log(ingredients) 
-      // console.log(amounts)   
+      recipeToArray(selectedRecipe)   
     } else {
       console.log('Recipe not set')
     }
     
-  }, [props.recipes, id])
-
-  //console.log(recipe)   
-
-  
-
-  
-
-  // recipeToArray(recipe) infinite loop here
-  
+  }, [props.recipes, id])  
 
   return recipe ? (
     <div className="detail">
-      <h1>{recipe.strMeal}</h1>
+      <img className="detail-img" src={recipe.strMealThumb} alt={recipe.strMeal}/>
+      <h2>{recipe.strMeal}</h2> 
+      <ul>
+      {
+        amounts.map((amount, index) => (
+          <div className="list" key={amount[0]}>
+              <li>{amount[1]} {ingredients[index][1]}</li>
+          </div>
+        ))
+      }
+      </ul>
       <h5>{recipe.strInstructions}</h5>
     </div>
  

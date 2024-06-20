@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 
 const MainIngredientsList = (props) => {
 
-  console.log(props.recipes)
+  //console.log(props.recipes)
 
   let navigate = useNavigate()
 

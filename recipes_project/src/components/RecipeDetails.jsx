@@ -16,38 +16,41 @@ const RecipeDetails = (props) => {
 
     let selectedRecipe = props.recipes.find((recipe) => recipe.idMeal === id.idMeal)
       
-      
-      
       //console.log(id.idMeal)
       //parseInt(recipe.idMeal) === parseInt({id})
 
-  
-    
-    setRecipe(selectedRecipe)
+      setRecipe(selectedRecipe)
     
   }, [props.recipes, id])
+
+  console.log(recipe)
+
+  const recipeToArray = (recipe) => {
+
+    let recipeArray = Object.entries(recipe)
+    console.log(recipeArray)
+
+    let ingredientsArray = recipeArray.filter((item) => item[0].includes('strIngredient') && item[1] !== '')
+    console.log(ingredientsArray)
+
+    let amountsArray = recipeArray.filter((item) => item[0].includes('strMeasure') && item[1] !== '')
+    console.log(amountsArray)
+  }
+  
+
+  // const makeIngredientArray = (array) => {
+  //   return 
+  // }
+
+  recipeToArray(recipe)
 
   return recipe ? (
     <div className="detail">
       <h1>{recipe.strMeal}</h1>
       <h5>{recipe.strInstructions}</h5>
     </div>
-    // <div className="detail">
-    //   <div className="detail-header">
-    //     <img src={boat.img} alt={boat.name} />
-    //     <div style={{minWidth: '30em', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-    //       <h1>{boat.name}</h1>
-    //     </div> 
-    //   </div>
-    //   <div className="info-wrapper">
-    //     <div style={{display: 'flex', justifyContent: 'space-between'}}>
-    //       <h3>Price: ${boat.price}</h3>
-    //       <h3>Boat ID: {boat.id}</h3>
-    //     </div>
-    //     <p>{boat.description}</p>
-    //   </div>
-    // </div>
-  ) : <h2>Something is not working</h2>
+ 
+  ) : <h2>Recipe not found</h2>
 }
 
 export default RecipeDetails
